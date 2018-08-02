@@ -130,12 +130,12 @@ class ParserGUI(QMainWindow):
                                  QMessageBox.Ok, QMessageBox.Ok)
         finally:
             if not self.log_file.lower().endswith(".csv"):
-                QMessageBox.information(self, "Error", "Not a CSV file!", 
+                QMessageBox.information(self, "Error", "Not a CSV file!",
                                  QMessageBox.Ok, QMessageBox.Ok)
-    
+
     def saveFile(self):
         self.save_file = QFileDialog.getSaveFileName(self, 'Save File')[0]
- 
+
     def parser(self):
 
         header_row = []
@@ -174,12 +174,12 @@ class ParserGUI(QMainWindow):
             QMessageBox.information(self, "Info", "Finished!",
                          QMessageBox.Ok, QMessageBox.Ok)
         except UnicodeDecodeError:
-            QMessageBox.information(self, "Error", "Bad file type or corrupted file", QMessageBox.Ok, QMessageBox.Ok)    
+            QMessageBox.information(self, "Error", "Bad file type or corrupted file", QMessageBox.Ok, QMessageBox.Ok)
 
     def setupParams(self):
         parent_text = ""
 
-        with open("tlog_params.txt") as f:
+        with open("./tlog_params.txt") as f:
             for line in f:
                 values = line.rstrip().split(".")
 
@@ -210,7 +210,7 @@ class ParserGUI(QMainWindow):
                     parent_text = parameter.parent().text(0)
                     parent_item = self.outList.findItems(parent_text, Qt.MatchContains)[0]
                     self.child = QTreeWidgetItem(parent_item)
-                    self.child.setText(0, parameter.text(0))    
+                    self.child.setText(0, parameter.text(0))
 
                 self.outParamDict[parameter.parent().text(0)].add(parameter.text(0))
 
